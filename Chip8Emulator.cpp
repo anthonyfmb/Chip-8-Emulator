@@ -26,6 +26,17 @@ uint8_t fontset[FONTSET_SIZE] =
 		0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 	};
 
+Chip8Emulator::Chip8Emulator() : randGen(std::chrono::system_clock::now().time_since_epoch().count()) {
+  program_counter = START_ADDR;
+
+  randByte = std::uniform_int_distribution<uint8_t>(0, 255U);
+  // Load fonts into memory
+  for (unsigned int i = 0; i < FONTSET_SIZE; i++) {
+    memory[FONTSET_START_ADDR + i] = fontset[i];
+  }
+
+}
+
 void Chip8Emulator::LoadROM(char const* filename) {
   // Opens ROM file as binary stream
   // Move file pointer to EOF to get size
@@ -450,16 +461,4 @@ void Chip8Emulator::OP_Fx65() {
     registers[i] = memory[index_register + i];
   }
 }
-
-Chip8Emulator::Chip8Emulator() : randGen(std::chrono::system_clock::now().time_since_epoch().count()) {
-  program_counter = START_ADDR;
-  
-  randByte = std::uniform_int_distribution<uint8_t>(0, 255U);
-  // Load fonts into memory
-  for (unsigned int i = 0; i < FONTSET_SIZE; i++) {
-    memory[FONTSET_START_ADDR + i] = fontset[i];
-  }
-      
-}
-
 

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cstdint>
 #include <random>
 
@@ -24,7 +26,7 @@ public:
   uint8_t keypad[KEY_SIZE];
   uint32_t video[GFX_HEIGHT * GFX_WIDTH];
 
-//private:
+private:
   // Do nothing
 	void OP_NULL();
 	// CLS

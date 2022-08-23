@@ -1,8 +1,12 @@
+#pragma once
+
+#ifndef PLATFORM_H
+
+#define PLATFORM_H
 #include <SDL.h>
 
 class Platform {
-public:
- 
+public: 
   SDL_Window *window;
   SDL_Renderer *renderer;
   SDL_Texture *texture;
@@ -15,3 +19,5 @@ public:
   
   bool ProcessInput(uint8_t* keys);
 };
+
+#endif
