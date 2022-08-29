@@ -27,6 +27,8 @@ public:
   uint32_t video[GFX_HEIGHT * GFX_WIDTH];
 
 private:
+  // Debug unknown opcodes
+  void Unknown(uint16_t);
   // Do nothing
 	void OP_NULL();
 	// CLS
@@ -110,7 +112,5 @@ private:
   uint8_t delay_timer;
   uint8_t sound_timer;
   uint16_t opcode;
-  
-  typedef void (Chip8Emulator::*Chip8Func)();
 };
 
